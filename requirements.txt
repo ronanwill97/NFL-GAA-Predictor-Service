@@ -5,4 +5,3 @@ datetime
 pandas
 pytest
 stripe
-urllib
