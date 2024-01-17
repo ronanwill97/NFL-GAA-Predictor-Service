@@ -1,19 +1,32 @@
 import psycopg2
+import urllib.parse as urlparse
+import os
+
+# Assume your database URL is stored in an environment variable
+database_url = os.environ['DATABASE_URL']
+
+# Parse the database URL
+parsed_url = urlparse.urlparse(database_url)
+dbname = parsed_url.path[1:]
+user = parsed_url.username
+password = parsed_url.password
+host = parsed_url.hostname
+port = parsed_url.port
 
 # Connect to PostgreSQL
 conn = psycopg2.connect(
-    host="localhost",
-    database="postgres",
-    user="docker",
-    password="docker"
+    dbname=dbname,
+    user=user,
+    password=password,
+    host=host,
+    port=port
 )
-
 # Open a cursor to perform database operations
 cur = conn.cursor()
 
 cur.execute("DROP SCHEMA IF EXISTS nfl CASCADE;")
 
-#Create a schema
+# Create a schema
 cur.execute("CREATE SCHEMA IF NOT EXISTS nfl;")
 
 # Create a Users table
@@ -58,7 +71,7 @@ cur.execute("""
     );
 """)
 
-#Commit changes and close the cursor and connection
+# Commit changes and close the cursor and connection
 conn.commit()
 cur.close()
 conn.close()
