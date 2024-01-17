@@ -8,4 +8,4 @@ stripe
 gunicorn
 django
 psycopg2
-corsheaders
+django-cors-headers
