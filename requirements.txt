@@ -7,3 +7,4 @@ pytest
 stripe
 gunicorn
 django
+psycopg2
