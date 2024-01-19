@@ -2,6 +2,6 @@ from django.urls import path
 from NFL.views import fixtures
 
 urlpatterns = [
-    path('fixtures', fixtures.getFixtures, name='fixtures'),
-    path('results', fixtures.getResults, name='results'),
+    path('get-fixtures', fixtures.get_fixtures, name='get-fixtures'),
+    path('load-fixtures', fixtures.load_fixtures_from_json, name='load-fixtures')
 ]

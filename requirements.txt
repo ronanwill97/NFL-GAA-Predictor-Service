@@ -7,5 +7,6 @@ pytest
 stripe
 gunicorn
 django
-psycopg2
+psycopg2-binary
 django-cors-headers
+python-dotenv
