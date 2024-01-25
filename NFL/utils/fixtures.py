@@ -25,11 +25,21 @@ def get_fixtures_by_division(division: int, year: int, fixtures: dict) -> dict:
     return fixtures
 
 
+def load_results(results):
+    for result in results:
+        division = int(result["division"].split()[1])
+        league_round = int(result["round"].split()[1])
+        fixture = Fixture.objects.get(home_team=result.get("homeTeam"), away_team=result.get("awayTeam"),
+                                      league_round=league_round, year=result.get("year"), division=division)
+        fixture.result = result.get("result")
+        fixture.save()
+
+
 def load_fixtures(fixtures):
     for fixture in fixtures:
         new_fixture = Fixture()
-        new_fixture.home_team = fixture["team1"]
-        new_fixture.away_team = fixture["team2"]
+        new_fixture.home_team = fixture["homeTeam"]
+        new_fixture.away_team = fixture["awayTeam"]
         new_fixture.division = int(fixture["division"].split()[1])
         new_fixture.year = fixture["year"]
         new_fixture.league_round = int(fixture["round"].split()[1])
