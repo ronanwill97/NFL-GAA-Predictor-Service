@@ -26,9 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = [os.environ.get("APP_DOMAIN"), ]
 
 # Application definition
@@ -44,7 +41,8 @@ INSTALLED_APPS = [
     'django.db.models',
     'django.db.backends.postgresql',
     'corsheaders',
-    'NFL'
+    'NFL',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
