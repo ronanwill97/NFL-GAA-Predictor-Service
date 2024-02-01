@@ -27,8 +27,8 @@ def get_fixtures_by_division(division: int, year: int, fixtures: dict) -> dict:
 
 def load_results(results):
     for result in results:
-        division = int(result["division"].split()[1])
-        league_round = int(result["round"].split()[1])
+        division = int(result["division"])
+        league_round = int(result["round"])
         fixture = Fixture.objects.get(home_team=result.get("homeTeam"), away_team=result.get("awayTeam"),
                                       league_round=league_round, year=result.get("year"), division=division)
         fixture.result = result.get("result")

@@ -1,3 +1,5 @@
+import os
+
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse, HttpResponseServerError
 from django.views.decorators.csrf import csrf_exempt
 
@@ -10,7 +12,7 @@ logger = logging.getLogger("django")
 
 
 def get_fixtures(request):
-    league_round = request.GET.get('round', False)
+    league_round = os.environ.get('LEAGUE_ROUND', False)
     year = int(request.GET.get('year', datetime.now().year))
     fixtures = {}
     for division in [1, 2, 3, 4]:
