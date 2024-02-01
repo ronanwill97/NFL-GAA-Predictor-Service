@@ -11,6 +11,7 @@ import logging
 logger = logging.getLogger("django")
 
 
+@csrf_exempt
 def get_fixtures(request):
     league_round = os.environ.get('LEAGUE_ROUND', False)
     year = int(request.GET.get('year', datetime.now().year))
