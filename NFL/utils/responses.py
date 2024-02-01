@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from NFL.models.response import Response
 from NFL.models.fixture import Fixture
@@ -57,7 +58,7 @@ def sort_scores(scores):
 
 def save_response(response: dict):
     year = response.get('year', datetime.now().year)
-    league_round = response.get('round', None)
+    league_round = os.environ.get("LEAGUE_ROUND", 1)
     phone_number = response.get('phoneNumber', None)
     name = response.get('name', None)
     form_uuid = uuid.uuid4()

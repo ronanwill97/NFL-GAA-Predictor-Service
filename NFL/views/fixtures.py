@@ -18,8 +18,9 @@ def get_fixtures(request):
     for division in [1, 2, 3, 4]:
         fixtures = get_fixtures_by_division(division, year, fixtures)
     if league_round:
-        round_info = fixtures.get("round", {})
-        return (JsonResponse(round_info.get(int(league_round), {})))
+        league_rounds = fixtures.get("round", {})
+        fixtures_for_round = {int(league_round): league_rounds.get(int(league_round), {})}
+        return (JsonResponse(fixtures_for_round))
 
     return (JsonResponse(fixtures))
 
